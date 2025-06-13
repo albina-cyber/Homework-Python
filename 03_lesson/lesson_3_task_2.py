@@ -1,17 +1,13 @@
 from smartphone import Smartphone
 
-phone1 = Smartphone
-phone2 = Smartphone
-phone3 = Smartphone
-phone4 = Smartphone
-phone5 = Smartphone
-phone1 = ("Apple", "14 pro", "+79270448857")
-phone2 = ("Lenovo", "12", "+79064587952")
-phone3 = ("Honor", "30i", "+79050000000")
-phone4 = ("Samsung", "M31S", "+79390362555")
-phone5 = ("Techno", "M31S", "+79112224433")
 
-catalog = [phone1, phone2, phone3, phone4, phone5]
+catalog = [
+    Smartphone(brand: "Apple", model: "14 pro", mumber:"+79270448857"),
+    Smartphone(brand: "Lenovo", model: "12", number:"+79064587952"),
+    Smartphone(brand: "Honor", model: "30i", number:"+79050000000"),
+    Smartphone(brand: "Samsung", model: "M31S", number:"+79390362555"),
+    Smartphone(brand: "Techno", model: "M31S", number: "+79112224433")
+]
 
-for phones in catalog:
-    print(phones)
+for smartphone in catalog:
+    print(f"{smartphone.brand} - {smartphone.model}. {smartphone.number}.")
