@@ -1,10 +1,20 @@
+from adress import Address
+
+
 class Mailing:
-    def __init__(self, to_address, from_address, cost, track):
-        self.to_address = to_address
-        self.from_address = from_address
+    to_address = Address
+    from_address = Address
+    cost = "1200"
+    track = "1234567890"
+
+    def __init__(self, to_adress, from_adress, cost, track):
+        self.to_adress = to_adress
+        self.from_adress = from_adress
         self.cost = cost
         self.track = track
 
-    def __str__(self):
-        return (f"{self.track} {self.from_address}{self.to_address}"
-                f"Стоимость {self.cost} рублей")
+    def to_adress(self):
+        print(self.to_adress)
+
+    def from_adress(self):
+        print(self.from_adress)
