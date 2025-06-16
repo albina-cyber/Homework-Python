@@ -5,7 +5,7 @@ class Mailing:
     to_address = Address
     from_address = Address
     cost = "100"
-    track = "0987654321"
+    track = "987654321"
 
     def __init__(self, to_adress, from_adress, cost, track):
         self.to_adress = to_adress

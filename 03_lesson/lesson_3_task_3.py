@@ -7,7 +7,7 @@ to_adress = 423582, "Нижнекамск", "ул. Гагарина", 31, 8
 from_adress = 423500, "Казань", "ул. Химическая", 16
 
 sending = Mailing
-sending(1234567890, to_adress, from_adress, 1200)
+sending(987654321, to_adress, from_adress, 100)
 
 print(
     "Отправление",
