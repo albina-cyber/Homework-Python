@@ -4,8 +4,8 @@ from adress import Address
 class Mailing:
     to_address = Address
     from_address = Address
-    cost = "1200"
-    track = "1234567890"
+    cost = "100"
+    track = "0987654321"
 
     def __init__(self, to_adress, from_adress, cost, track):
         self.to_adress = to_adress
