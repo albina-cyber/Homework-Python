@@ -6,5 +6,5 @@ class Mailing:
         self.track = track
 
     def __str__(self):
-        return (f"{self.track} {self.from_address}{self.from_address}"
+        return (f"{self.track} {self.from_address}{self.to_address}"
                 f"Стоимость {self.cost} рублей")
