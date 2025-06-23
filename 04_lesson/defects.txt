@@ -1,0 +1,52 @@
+1. Функция "delete_symbol" не предусматривает вариант когда удаляется пробел 
+между словами:
+
+Test case 1: string = "Sky Pro", symbol = "" 
+Expected Result: "SkyPro"
+Actual Result: "Sky Pro"
+
+Error message:
+
+def test_delete_symbol(string, symbol, result):
+        string_util = StringUtils()
+        res = string_util.delete_symbol(string, symbol)
+>       assert res == result
+E       AssertionError: assert 'Sky Pro' == 'SkyPro'
+E         
+E         - SkyPro
+E         + Sky Pro
+E         ?    +
+
+Test case 2: string = "park ", symbol = "" 
+Expected Result: "park"
+Actual Result: "park "
+
+Error Message:
+
+def test_delete_symbol(string, symbol, result):
+        string_util = StringUtils()
+        res = string_util.delete_symbol(string, symbol)
+>       assert res == result
+E       AssertionError: assert 'park ' == 'park'
+E         
+E         - park
+E         + park 
+E         ?     +
+
+2. ФФункция "contains" не предусматривает вариант когда искомый символ является 
+пустой строкой:
+
+Test case: string = "hello", symbol = "" 
+Expected Result: False
+Actual Result: True
+
+Error message:
+def test_contains(string, symbol, result):
+        string_util = StringUtils()
+        print(f"Input string: {string}")
+        print(f"Inputed symbol: {symbol}")
+        print(f"Expected result: {result}")
+        res = string_util.contains(string, symbol)
+        print(f"Actual result: {res}")
+>       assert res == result
+E       assert True == False
