@@ -9,10 +9,10 @@ driver = webdriver.Chrome(service=ChromeService
 driver.maximize_window()
 driver.get('http://uitestingplayground.com/classattr')
 
-for i in range(3):
-    driver.find_element(By.CSS_SELECTOR, 'button.btn-primary').click()
-    alert = driver.switch_to.alert
-    alert.accept()
-    driver.refresh()
+
+driver.find_element(By.CSS_SELECTOR, 'button.btn-primary').click()
+alert = driver.switch_to.alert
+alert.accept()
+driver.refresh()
 
 sleep(15)
