@@ -35,8 +35,7 @@ class internet_shop:
 
 
 def test_swag_labs():
-    browser = webdriver.Chrome(
-        service=ChromeService(ChromeDriverManager().install()))
+    browser = webdriver.Chrome(service=ChromeService(ChromeDriverManager().install()))
 
     # Логин
     magazine_swag_labs = internet_shop(url="https://www.saucedemo.com")

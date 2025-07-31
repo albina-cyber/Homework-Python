@@ -1,8 +1,12 @@
 import pytest
 from selenium import webdriver
+from selenium.webdriver.chrome.options import Options
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
+import time
+
+chrome_options = Options()
 
 
 @pytest.fixture
@@ -35,29 +39,38 @@ def test_fill_and_submit_form(driver):
     driver.find_element(By.CSS_SELECTOR, "input[name=company]").send_keys(
         "SkyPro")
 
-    submit_button = WebDriverWait(driver, 10).until(
-        EC.visibility_of_element_located(
-            (By.CSS_SELECTOR, ".btn.btn-outline-primary.mt-3")))
-    driver.execute_script("arguments[0].scrollIntoView(true);", submit_button)
+# Прокрутка к элементу
 
-    WebDriverWait(driver, 10).until(
-        EC.presence_of_all_elements_located(
-            (By.CSS_SELECTOR, "main[class=flex-shrink-2]")))
 
-    job_position_element = WebDriverWait(driver, 10).until(
+submit_button = driver.find_element(By.CSS_SELECTOR, ".btn btn-outline-primary.mt-3")
+driver.execute_script("arguments[0].scrollIntoView();", submit_button)
+
+
+# Небольшая задержка
+time.sleep(2)  # Задержка в 2 секунды
+
+# Клик по кнопке
+submit_button.click()
+
+
+WebDriverWait(driver, 10).until(
+    EC.presence_of_elements_located(
+        (By.CSS_SELECTOR, "main[class=flex-shrink-2]")))
+
+job_position_element = WebDriverWait(driver, 10).until(
         EC.presence_of_element_located((By.ID, "job-position")))
-    job_position_element.send_keys("QA")
+job_position_element.send_keys("QA")
 
-    zip_code_field = driver.find_element(By.CSS_SELECTOR, "div#zip-code")
-    assert "alert-danger" in zip_code_field.get_attribute("class")
+zip_code_field = driver.find_element(By.CSS_SELECTOR, "div#zip-code")
+assert "alert-danger" in zip_code_field.get_attribute("class")
 
-    green_highlighted_fields = driver.find_elements(
+green_highlighted_fields = driver.find_elements(
         By.CSS_SELECTOR, "div.alert.py-2.alert-success")
-    assert len(green_highlighted_fields) == 9
+assert len(green_highlighted_fields) == 9
 
-    zip_code_field = driver.find_element(By.CSS_SELECTOR, "div#zip-code")
-    assert "alert-danger" in zip_code_field.get_attribute("class")
+zip_code_field = driver.find_element(By.CSS_SELECTOR, "div#zip-code")
+assert "alert-danger" in zip_code_field.get_attribute("class")
 
-    green_highlighted_fields = driver.find_elements(
+green_highlighted_fields = driver.find_elements(
         By.CSS_SELECTOR, "div.alert.py-2.alert-success")
-    assert len(green_highlighted_fields) == 9
+assert len(green_highlighted_fields) == 9
