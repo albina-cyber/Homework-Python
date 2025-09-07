@@ -16,8 +16,8 @@ def test_create_project_positive():
 
 # Негативная проверка на создание
 def test_create_project_negative():
-    url = "http://yougile.com/api-v2/projects"
-    data = {"description": "This is a test project"}
+    url = base_url + "/projects"
+    data = {"title": "Проект 1-Домашнее задание"}
     response = requests.post(url, json=data)
     assert response.status_code == 401
 
@@ -28,7 +28,7 @@ def test_update_project_positive():
     data = {"title": "Проект 1-Домашнее задание"}
     response = requests.post(url, json=data, headers=headers)
     assert response.status_code == 200
-    url = base_url + "/projects" + response.json()["id"]
+    url = base_url + "/projects/" + response.json()["content"][0]["id"]
     data = {"title": "Проект 2-Test"}
     response = requests.put(url, json=data, headers=headers)
     assert response.status_code == 200
@@ -36,24 +36,29 @@ def test_update_project_positive():
 
 # Негативная проверка на изменение проекта
 def test_update_project_negative():
-    url = "http://yougile.com/api-v2/projects/999"
-    data = {"name": "Updated Project", "description": "This is an updated project"}
+    url = base_url + "/projects"
+    data = {"title": "Проект 1-Домашнее задание"}
+    response = requests.post(url, json=data, headers=headers)
+    assert response.status_code == 200
+    url = base_url + "/projects/" + response.json()["content"][0]["id"]
+    data = {"title": "Проект 2-Test"}
     response = requests.put(url, json=data)
     assert response.status_code == 401
 
 
 # Позитивная проверка на получение проекта
 def test_get_project_positive():
-    url = base_url + "/projects"
+    url = base_url + "/projects/"
     data = {"title": "Проект 1-Домашнее задание"}
     response = requests.post(url, json=data, headers=headers)
     assert response.status_code == 200
-    response2 = requests.get(url + response.json()["id"], headers=headers)
+    response2 = requests.get(url + response.json()["content"][0]["id"], headers=headers)
     assert response2.status_code == 200
 
 
 # Негативная проверка на получение проекта
 def test_get_project_negative():
-    url = "http://yougile.com/api-v2/projects/999"
-    response = requests.get(url)
+    url = base_url + "/projects/"
+    data = {"title": " "}
+    response = requests.post(url, json=data)
     assert response.status_code == 401
